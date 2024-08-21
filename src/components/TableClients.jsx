@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios'
+import apiClient from './apiClient';
 import { Button, Container } from '@mui/material';
 import { EditCustomer } from './modals/EditCustomer';
 import { DeleteCustomer } from './modals/DeleteCustomer';
@@ -54,11 +55,11 @@ export default function TableClients() {
         }
 
         try {
-            const response = await axios.get(import.meta.env.VITE_URL_API + '/client', {
+            apiClient.get('/clients'), {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
-            });
+            };
             setClients(response.data);
         } catch (error) {
             console.error('Error al obtener los clientes:', error);
