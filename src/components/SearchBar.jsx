@@ -5,18 +5,18 @@ import React from 'react'
 
 export const SearchBar = ({ queryParams, setQueryParams, setField, gender, selectGender, statusClient, selectStatus }) => {
     return (
-        <Grid container>
-            <Grid item md={6} xs={12}>
+        <Grid container sx={{ marginTop: '20px' }} spacing={2}>
+            <Grid item md={6} xs={12} >
                 <TextField
                     label="Filtrar Clientes"
                     variant="outlined"
                     value={queryParams}
                     onChange={(e) => { setQueryParams(e.target.value); setField('') }}
                     fullWidth
-                    sx={{ marginBottom: 2 }}
+                    sx={{ marginBottom: 2, backgroundColor: 'white' }}
                 />
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={3} xs={6}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Género</InputLabel>
                     <Select
@@ -25,6 +25,7 @@ export const SearchBar = ({ queryParams, setQueryParams, setField, gender, selec
                         value={gender}
                         onChange={selectGender}
                         label="Género"
+                        sx={{ backgroundColor: 'white' }}
                     >
                         <MenuItem value="Masculino">Masculino</MenuItem>
                         <MenuItem value="Femenino">Femenino</MenuItem>
@@ -32,7 +33,7 @@ export const SearchBar = ({ queryParams, setQueryParams, setField, gender, selec
                     </Select>
                 </FormControl>
             </Grid>
-            <Grid item md={3}>
+            <Grid item md={3} xs={6}>
                 <FormControl fullWidth>
                     <InputLabel id="demo-simple-select-label">Estado</InputLabel>
                     <Select
@@ -41,6 +42,7 @@ export const SearchBar = ({ queryParams, setQueryParams, setField, gender, selec
                         value={statusClient}
                         onChange={selectStatus}
                         label="Estado"
+                        sx={{ backgroundColor: 'white' }}
                     >
                         <MenuItem value="true">Activo</MenuItem>
                         <MenuItem value="false">Inactivo</MenuItem>

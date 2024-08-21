@@ -25,15 +25,15 @@ const FormLogin = () => {
         const newErrors = { email: '', password: '' };
 
         if (!formData.email) {
-            newErrors.email = 'Email is required';
+            newErrors.email = 'Email es requerido';
             valid = false;
         } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-            newErrors.email = 'Email is invalid';
+            newErrors.email = 'Email no tiene el formato válido';
             valid = false;
         }
 
         if (!formData.password) {
-            newErrors.password = 'Password is required';
+            newErrors.password = 'Password es requerido';
             valid = false;
         }
         if (formData.password.length <= 3) {
@@ -49,7 +49,7 @@ const FormLogin = () => {
         e.preventDefault();
         if (validateForm()) {
             try {
-                const response = await axios.post(`http://localhost:3001/user/login`, formData);
+                const response = await axios.post(import.meta.env.VITE_URL_API + '/user/login', formData);
                 if (response.status === 201) {
                     // Login exitoso
                     login(response.data.access_token);

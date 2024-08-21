@@ -8,6 +8,7 @@ import Brightness1Icon from '@mui/icons-material/Brightness1';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PaginationGrid from './PaginationGrid';
+import { Height } from '@mui/icons-material';
 
 export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, openEditoModal, openModalDelete }) => {
 
@@ -25,8 +26,8 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
     };
     return (
         <>
-            <TableContainer sx={{ margin: 2 }} component={Paper}>
-                <Table sx={{ maxWidth: 850, }} aria-label="simple table">
+            <TableContainer sx={{ padding: 0, marginBottom: '20px', marginTop: '20px' }} component={Paper} >
+                <Table sx={{}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell align="center">
@@ -88,7 +89,8 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
             </TableContainer>
             <PaginationGrid count={totalPages}
                 page={page}
-                onPageChange={handlePageChange} />
+                onPageChange={handlePageChange}
+            />
         </>
     )
 }

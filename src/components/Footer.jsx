@@ -6,9 +6,7 @@ import Paper from "@mui/material/Paper";
 export default function Footer() {
     return (
         <Paper sx={{
-            marginTop: 'calc(10% + 60px)',
-            position: 'fixed',
-            bottom: 0,
+            marginTop: 'auto', // Deja que el flexbox gestione el espacio
             width: '100%',
             backgroundColor: '#282A3A'
         }} component="footer" square variant="outlined">

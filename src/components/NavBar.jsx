@@ -40,15 +40,15 @@ export default function ButtonAppBar() {
     const settings = ['Clientes', 'Logout'];
 
     const handleLogout = () => {
-        logout(); // Esto limpia el user en el contexto
+        logout();
         localStorage.removeItem('authToken');
-        navigate('/') // Limpiar el token del localStorage
-        handleCloseUserMenu(); // Cerrar el menú después del logout
+        navigate('/')
+        handleCloseUserMenu();
     };
 
     const handleClients = () => {
-        navigate('/dashboard/clients'); // Navegar a la ruta de Clientes
-        handleCloseUserMenu(); // Cerrar el menú después de la navegación
+        navigate('/dashboard/clients');
+        handleCloseUserMenu();
     };
 
     return (

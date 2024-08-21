@@ -54,7 +54,7 @@ export default function TableClients() {
         }
 
         try {
-            const response = await axios.get(`http://localhost:3001/client`, {
+            const response = await axios.get(import.meta.env.VITE_URL_API + '/client', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -76,8 +76,8 @@ export default function TableClients() {
             return;
         }
         try {
-            const response = await axios.get(`
-                http://localhost:3001/client?filter=${queryParams}&sortBy=${field}&order=${order}&gender=${gender}&status=${statusClient}`,
+            const response = await axios.get(
+                import.meta.env.VITE_URL_API + `/client?filter=${queryParams}&sortBy=${field}&order=${order}&gender=${gender}&status=${statusClient}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -87,7 +87,7 @@ export default function TableClients() {
         } catch (error) {
             if (error.response.status === 404)
                 setClients([])
-            console.error('Error al obtener los clientes:', error);
+            //  console.error('Error al obtener los clientes:', error);
         } finally {
             setLoading(false);
         }
@@ -109,13 +109,17 @@ export default function TableClients() {
 
 
     return (
-        <Container sx={{ padding: 2 }}>
-            <SearchBar queryParams={queryParams} setQueryParams={setQueryParams} setField={setField} gender={gender} selectGender={selectGender} statusClient={statusClient} selectStatus={selectStatus} />
-            <Button color='primary' variant="contained" onClick={() => openModalCreate()}>crear Cliente</Button>
-            <ClientsGrid buttonOrderName={buttonOrderName} field={field} order={order} setOrder={setOrder} setField={setField} clients={clients} openEditoModal={openEditoModal} openModalDelete={openModalDelete} />
+        <>
+            <Container sx={{ padding: 0, marginBottom: '10px' }}>
+                <h2>Clientes</h2>
+                <SearchBar queryParams={queryParams} setQueryParams={setQueryParams} setField={setField} gender={gender} selectGender={selectGender} statusClient={statusClient} selectStatus={selectStatus} />
+                <Button color='primary' variant="contained" onClick={() => openModalCreate()} sx={{ marginTop: '20px' }}>crear Cliente</Button>
+                <ClientsGrid buttonOrderName={buttonOrderName} field={field} order={order} setOrder={setOrder} setField={setField} clients={clients} openEditoModal={openEditoModal} openModalDelete={openModalDelete} />
+            </Container >
+
             <EditCustomer openEditoModal={openEditModal} closeEditoModal={closeEditoModal} customerInfo={customerInfo} />
             <DeleteCustomer openModalDelete={openDeleteModal} closeDeleteModal={closeDeleteModal} customerInfo={customerInfo} />
             <CreateCustomer openModalCreate={openCreateModal} closeCreateModal={closeCreateModal} />
-        </Container >
+        </>
     );
 }

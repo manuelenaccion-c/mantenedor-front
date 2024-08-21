@@ -13,15 +13,12 @@ import 'react-toastify/dist/ReactToastify.css'; // Importa los estilos de Toasti
 
 function App() {
 
-
   return (
-
     <AuthProvider>
       <Router>
         <div className='app'>
           <NavBar />
           <main className='main-content'>
-
             <Routes>
               <Route path='/' element={<Login />} />
               <Route element={<ProtectedRoutes />}>
@@ -33,12 +30,9 @@ function App() {
           </main>
           <Footer />
           <ToastContainer />
-
         </div>
       </Router>
     </AuthProvider>
-
-
   )
 }
 
