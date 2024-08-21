@@ -52,8 +52,8 @@ const FormLogin = () => {
                 const response = await axios.post(import.meta.env.VITE_URL_API + '/user/login', formData);
                 if (response.status === 201) {
                     // Login exitoso
-                    login(response.data.access_token);
                     toast.success("Login exitoso, bienvenido");
+                    login(response.data.access_token);
                     setTimeout(() => {
                         navigate('/dashboard');
                     }, "1000");
