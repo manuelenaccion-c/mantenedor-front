@@ -13,7 +13,7 @@ export const ProtectedRoutes = () => {
     async function validateAuth() {
         const token = localStorage.getItem('authToken');
         try {
-            const response = await axios.get('http://localhost:3001/user/validate-token', {
+            const response = await axios.get(import.meta.env.VITE_URL_API + '/user/validate-token', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
