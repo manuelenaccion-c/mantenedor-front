@@ -40,7 +40,7 @@ export default function TableClients() {
     const closeEditoModal = () => { setOpenEditModal(false); setCustomerInfo(null) };
 
     const openModalDelete = (customer) => { setCustomerInfo(customer); setOpenDeleteModal(true) };
-    const closeDeleteModal = () => { setOpenDeleteModal(false); setCustomerInfo(null) };
+    const closeDeleteModal = () => { setOpenDeleteModal(false) };
 
     const openModalCreate = () => { setOpenCreateModal(true) };
     const closeCreateModal = () => { setOpenCreateModal(false) }

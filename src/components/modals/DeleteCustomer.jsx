@@ -31,8 +31,11 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
                     Authorization: `Bearer ${token}`
                 }
             });
-            toast.success('Cliente eliminado exitosamente');
+
+            toast.success('Cliente Eliminado Satisfactoriamente');
             closeDeleteModal();
+
+            console.log(response)
         } catch (error) {
             toast.error('Error al eliminar el cliente');
             console.error('Error al eliminar cliente:', error);

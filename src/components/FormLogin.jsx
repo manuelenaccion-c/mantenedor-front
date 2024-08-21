@@ -53,8 +53,11 @@ const FormLogin = () => {
                 if (response.status === 201) {
                     // Login exitoso
                     login(response.data.access_token);
-                    toast.success(response.data.message);
-                    navigate('/dashboard');
+                    toast.success("Login exitoso, bienvenido");
+                    setTimeout(() => {
+                        navigate('/dashboard');
+                    }, "1000");
+                    ;
                 } else if (response.status === 401) {
                     // Error en las credenciales
                     toast.error('Error en credenciales. Por favor, verifica tu usuario y contraseña.');
