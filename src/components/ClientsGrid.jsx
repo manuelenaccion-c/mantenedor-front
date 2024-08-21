@@ -3,12 +3,13 @@
 
 
 import React, { useState } from 'react'
-import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import PaginationGrid from './PaginationGrid';
-import { Height } from '@mui/icons-material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, openEditoModal, openModalDelete }) => {
 
@@ -30,24 +31,25 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                 <Table sx={{}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="center">
+                            <TableCell align="rigth" style={{ minWidth: 120 }}>
                                 Nombre
-                                <Button onClick={() => { buttonOrderName(); setField("name") }}>
-                                    {field === 'name' ? (order === 'ASC' ? '↑' : '↓') : '↑'}
+                                <Button Button onClick={() => { buttonOrderName(); setField("name") }}>
+                                    {field === 'name' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
                                 </Button>
                             </TableCell>
-                            <TableCell align="center">Apellido
+                            <TableCell align="center" style={{ minWidth: 120 }}>
+                                Apellido
                                 <Button onClick={() => { buttonOrderName(); setField("last_name") }}>
-                                    {field === 'last_name' ? (order === 'ASC' ? '↑' : '↓') : '↑'}
+                                    {field === 'last_name' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
                                 </Button>
                             </TableCell>
                             <TableCell align="center">RUT</TableCell>
                             <TableCell align="center">Correo</TableCell>
                             <TableCell align="center">Sexo</TableCell>
                             <TableCell align="center">Status</TableCell>
-                            <TableCell align="center">Fecha de Creación
+                            <TableCell align="center" style={{ minWidth: 120 }}>Creado
                                 <Button onClick={() => { buttonOrderName(); setField("created_at") }}>
-                                    {field === 'created_at' ? (order === 'ASC' ? '↑' : '↓') : '↑'}
+                                    {field === 'created_at' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
                                 </Button>
                             </TableCell>
                             <TableCell align="center">Acciones</TableCell>
@@ -86,7 +88,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                         )}
                     </TableBody>
                 </Table>
-            </TableContainer>
+            </TableContainer >
             <PaginationGrid count={totalPages}
                 page={page}
                 onPageChange={handlePageChange}
