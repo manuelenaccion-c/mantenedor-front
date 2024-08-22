@@ -46,6 +46,23 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
 
     const onSubmitEditClient = async () => {
         const token = localStorage.getItem('authToken');
+
+        const hasChanges = () => {
+            return (
+                formData.name !== customerInfo.name ||
+                formData.last_name !== customerInfo.last_name ||
+                formData.email !== customerInfo.email ||
+                formData.rut !== customerInfo.rut ||
+                formData.gender !== customerInfo.gender ||
+                formData.status !== customerInfo.status
+            );
+        };
+
+        if (!hasChanges()) {
+            toast.info('No se han realizado cambios.');
+            return;
+        }
+
         if (validateForm()) {
             try {
                 const response = await axios.put(import.meta.env.VITE_URL_API + `/client/${customerInfo.id}`, formData, {
