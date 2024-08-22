@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import BusinessIcon from '@mui/icons-material/Business';
 import { Menu, MenuItem, Tooltip } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
@@ -85,7 +85,9 @@ export default function ButtonAppBar() {
                             ))}
                         </Menu>
                     </Box>
-                    <BusinessIcon />
+                    <Link to={'/dashboard'}>
+                        <BusinessIcon sx={{ color: 'white' }} />
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box >

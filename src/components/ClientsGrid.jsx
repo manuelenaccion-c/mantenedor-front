@@ -41,9 +41,9 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                 <Table sx={{}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell align="rigth" style={{ minWidth: 120 }}>
+                            <TableCell align="right" style={{ minWidth: 120 }}>
                                 Nombre
-                                <Button Button onClick={() => { buttonOrderName(); setField("name") }}>
+                                <Button onClick={() => { buttonOrderName(); setField("name") }}>
                                     {field === 'name' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
                                 </Button>
                             </TableCell>
