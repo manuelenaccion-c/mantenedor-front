@@ -1,6 +1,6 @@
 import * as React from 'react';
 import axios from 'axios'
-import { Button, Container } from '@mui/material';
+import { Button, Container, Skeleton } from '@mui/material';
 import { EditCustomer } from './modals/EditCustomer';
 import { DeleteCustomer } from './modals/DeleteCustomer';
 import { CreateCustomer } from './modals/CreateCustomer';
@@ -114,7 +114,10 @@ export default function TableClients() {
                 <h2>Clientes</h2>
                 <SearchBar queryParams={queryParams} setQueryParams={setQueryParams} setField={setField} gender={gender} selectGender={selectGender} statusClient={statusClient} selectStatus={selectStatus} />
                 <Button color='primary' variant="contained" onClick={() => openModalCreate()} sx={{ marginTop: '20px' }}>crear Cliente</Button>
-                <ClientsGrid buttonOrderName={buttonOrderName} field={field} order={order} setOrder={setOrder} setField={setField} clients={clients} openEditoModal={openEditoModal} openModalDelete={openModalDelete} />
+                {!loading ?
+                    <ClientsGrid buttonOrderName={buttonOrderName} field={field} order={order} setOrder={setOrder} setField={setField} clients={clients} openEditoModal={openEditoModal} openModalDelete={openModalDelete} /> :
+                    <Skeleton variant="rectangular" width={1000} height={118} sx={{ marginTop: '20px' }} />
+                }
             </Container >
 
             <EditCustomer openEditoModal={openEditModal} closeEditoModal={closeEditoModal} customerInfo={customerInfo} />
