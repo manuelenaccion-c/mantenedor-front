@@ -25,6 +25,16 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
+
+
+    const newDate = (date) => {
+        return new Date(date).toLocaleDateString('es-ES', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        })
+    }
+
     return (
         <>
             <TableContainer sx={{ padding: 0, marginBottom: '20px', marginTop: '20px' }} component={Paper} >
@@ -69,7 +79,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                                     <TableCell align="right">
                                         <Brightness1Icon sx={{ color: client.status ? 'green' : 'red' }} />
                                     </TableCell>
-                                    <TableCell align="left">{client.created_at}</TableCell>
+                                    <TableCell align="left">{newDate(client.created_at)}</TableCell>
                                     <TableCell align="center">
                                         <Button onClick={() => openEditoModal(client)}>
                                             <EditIcon />

@@ -15,8 +15,6 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ButtonAppBar() {
 
-
-
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const { user, logout } = useAuth();
@@ -56,11 +54,11 @@ export default function ButtonAppBar() {
             <AppBar position="static" sx={{ backgroundColor: '#282A3A' }}>
                 <Toolbar sx={{ justifyContent: 'space-between' }}>
                     <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
+                        {user && (<Tooltip title="Open settings">
                             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                 <MenuIcon sx={{ color: 'white' }} />
                             </IconButton>
-                        </Tooltip>
+                        </Tooltip>)}
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
