@@ -1,6 +1,5 @@
 
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
-import { Dashboard } from './pages/Dashboard';
 import { Login } from './pages/Login';
 import { Clients } from './pages/Clients';
 import NavBar from './components/NavBar';
@@ -10,6 +9,7 @@ import './App.css'
 import { ProtectedRoutes } from './utils/ProtectedRoutes';
 import { ToastContainer } from 'react-toastify'; // Importa ToastContainer
 import 'react-toastify/dist/ReactToastify.css'; // Importa los estilos de Toastify
+import { DashboardPage } from './pages/DashboardPage';
 
 function App() {
 
@@ -22,7 +22,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Login />} />
               <Route element={<ProtectedRoutes />}>
-                <Route path='/dashboard' element={<Dashboard />} />
+                <Route path='/dashboard' element={<DashboardPage />} />
                 <Route path='/dashboard/clients' element={<Clients />} />
               </Route>
             </Routes>

@@ -10,6 +10,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PaginationGrid from './PaginationGrid';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
+import { newDate } from '../utils/utils';
 
 export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, openEditoModal, openModalDelete }) => {
 
@@ -25,15 +26,6 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
     const handlePageChange = (newPage) => {
         setPage(newPage);
     };
-
-
-    const newDate = (date) => {
-        return new Date(date).toLocaleDateString('es-ES', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-        })
-    }
 
     return (
         <>
