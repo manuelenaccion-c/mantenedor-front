@@ -4,8 +4,8 @@ import React from 'react'
 export const Dashboard = () => {
 
   const sytles = {
-    height: '40%',
-    width: '90%',
+    height: '50%',
+    width: '50%',
   }
 
   return (
