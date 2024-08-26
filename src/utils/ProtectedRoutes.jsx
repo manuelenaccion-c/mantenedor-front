@@ -28,7 +28,7 @@ export const ProtectedRoutes = () => {
             if (error.response && error.response.status === 401) {
                 toast.error('Sesión expirada o no autorizada, redirigiendo al login.')
                 localStorage.clear();
-                navigate('/')
+
             }
             setAuth(false);
         } finally {
@@ -38,7 +38,7 @@ export const ProtectedRoutes = () => {
 
     useEffect(() => {
         validateAuth()
-    }, [navigate])
+    }, [])
 
     if (loading) {
         return (
@@ -51,6 +51,6 @@ export const ProtectedRoutes = () => {
         );
     }
 
-    return auth && <Outlet />;
+    return auth ? <Outlet /> : <Navigate to="/" />;
 };
 
