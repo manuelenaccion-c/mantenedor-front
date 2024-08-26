@@ -3,24 +3,14 @@ import React, { useState, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import { Navigate } from 'react-router'
 import axios from 'axios'
-import { toast } from 'react-toastify'
-import { Container, Skeleton } from '@mui/material'
 
 export const ProtectedRoutes = () => {
     const navigate = useNavigate()
     const [auth, setAuth] = useState(false)
     const [loading, setLoading] = useState(true);
-    const [authAttempted, setAuthAttempted] = useState(false)
 
     async function validateAuth() {
-        if (authAttempted) return
-        setAuthAttempted(true)
-
         const token = localStorage.getItem('authToken');
-        if (!token) {
-            setLoading(false);
-            return;
-        }
         try {
             const response = await axios.get(import.meta.env.VITE_URL_API + '/user/validate-token', {
                 headers: {
@@ -30,14 +20,11 @@ export const ProtectedRoutes = () => {
             setAuth(response.data);
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                toast.error('Sesión expirada o no autorizada, redirigiendo al login.');
-                localStorage.removeItem('authToken');
-                navigate('/')
-            } else {
-                toast.error('Error de autenticación.');
+                console.warn('Sesión expirada o no autorizada, redirigiendo al login');
+                localStorage.clear();
+                navigate('/');
             }
             setAuth(false);
-
         } finally {
             setLoading(false);
         }
@@ -48,16 +35,11 @@ export const ProtectedRoutes = () => {
     }, [])
 
     if (loading) {
-        return (
-            <Container>
-                <Skeleton variant="rectangular" height={118} />
-                <Skeleton height={40} />
-                <Skeleton height={40} />
-                <Skeleton height={40} />
-            </Container>
-        );
+        return <div>Loading...</div>;
     }
 
-    return auth ? <Outlet /> : <Navigate to="/" />;
-};
+    return (
 
+        auth ? <Outlet /> : <Navigate to='/' />
+    )
+}
