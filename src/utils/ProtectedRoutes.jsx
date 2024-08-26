@@ -51,6 +51,6 @@ export const ProtectedRoutes = () => {
         );
     }
 
-    return auth ? <Outlet /> : <Navigate to="/" />;
+    return auth && <Outlet />;
 };
 
