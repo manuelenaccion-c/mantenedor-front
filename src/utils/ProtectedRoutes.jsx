@@ -42,6 +42,6 @@ export const ProtectedRoutes = () => {
 
     return (
 
-        auth ? <Outlet /> : <Navigate to='/' />
+        auth ? <Outlet /> : navigate('/')
     )
 }
