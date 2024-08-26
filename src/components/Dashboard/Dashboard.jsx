@@ -9,8 +9,10 @@ import ListLastClient from './ListLastClients';
 import InactiveClients from './InactiveClient';
 import ClientsChart from './ClientsChart';
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 export const Dashboard = () => {
+	const navigate = useNavigate()
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(true)
 
@@ -27,6 +29,7 @@ export const Dashboard = () => {
 					Authorization: `Bearer ${token}`
 				}
 			});
+
 			setData(response.data);
 		} catch (error) {
 			console.error('Error al obtener los clientes:', error);
