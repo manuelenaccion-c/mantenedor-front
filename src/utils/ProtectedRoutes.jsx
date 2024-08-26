@@ -10,8 +10,12 @@ export const ProtectedRoutes = () => {
     const navigate = useNavigate()
     const [auth, setAuth] = useState(false)
     const [loading, setLoading] = useState(true);
+    const [authAttempted, setAuthAttempted] = useState(false)
 
     async function validateAuth() {
+        if (authAttempted) return
+        setAuthAttempted(true)
+
         const token = localStorage.getItem('authToken');
         if (!token) {
             setLoading(false);
@@ -26,10 +30,13 @@ export const ProtectedRoutes = () => {
             setAuth(response.data);
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                toast.error('Sesión expirada o no autorizada, redirigiendo al login.')
-                localStorage.clear();
-                setAuth(false);
+                toast.error('Sesión expirada o no autorizada, redirigiendo al login.');
+                localStorage.removeItem('authToken');
+                navigate('/')
+            } else {
+                toast.error('Error de autenticación.');
             }
+            setAuth(false);
 
         } finally {
             setLoading(false);
