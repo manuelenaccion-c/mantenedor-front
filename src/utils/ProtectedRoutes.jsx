@@ -25,7 +25,7 @@ export const ProtectedRoutes = () => {
                 console.warn('Sesión expirada o no autorizada, redirigiendo al login');
                 toast.error('Sesión expirada o no autorizada, redirigiendo al login.')
                 localStorage.clear();
-                navigate('/');
+
             }
             setAuth(false);
         } finally {
@@ -35,7 +35,7 @@ export const ProtectedRoutes = () => {
 
     useEffect(() => {
         validateAuth()
-    }, [navigate])
+    }, [])
 
     if (loading) {
         return (
