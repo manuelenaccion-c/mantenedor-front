@@ -3,15 +3,14 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
-
-import { TextField, Button, FormControl, FormHelperText, Box, Typography } from '@mui/material';
+import { TextField, Button, FormControl, FormHelperText, Box, Typography, CircularProgress } from '@mui/material';
 import { toast } from 'react-toastify';
 
 
 const FormLogin = () => {
     const { login } = useAuth();
     const navigate = useNavigate()
-
+    const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
 
@@ -47,6 +46,7 @@ const FormLogin = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setLoading(false)
         if (validateForm()) {
             try {
                 const response = await axios.post(import.meta.env.VITE_URL_API + '/user/login', formData);
@@ -75,6 +75,7 @@ const FormLogin = () => {
                 console.error('Error durante el login:', error);
             }
         }
+        setLoading(true)
     };
 
     return (
@@ -106,7 +107,7 @@ const FormLogin = () => {
                     {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
                 </FormControl>
                 <Button type="submit" variant="contained" color="primary">
-                    Submit
+                    {loading ? <CircularProgress size={24} /> : 'Submit'}
                 </Button>
             </form>
         </Box>
