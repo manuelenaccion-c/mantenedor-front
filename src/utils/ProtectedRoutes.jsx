@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from 'react-router'
 import { Navigate } from 'react-router'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { Container, Skeleton } from '@mui/material'
 
 export const ProtectedRoutes = () => {
     const navigate = useNavigate()
@@ -37,7 +38,13 @@ export const ProtectedRoutes = () => {
     }, [])
 
     if (loading) {
-        return <div>Loading...</div>;
+        return (
+            <Container>
+                <Skeleton variant="rectangular" height={118} />
+                <Skeleton height={40} />
+                <Skeleton height={40} />
+                <Skeleton height={40} />
+            </Container>)
     }
 
     return (

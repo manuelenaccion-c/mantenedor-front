@@ -3,7 +3,7 @@
 
 import React, { useEffect, useState } from 'react'
 import CountClients from './CountsClients'
-import { Container, Grid, Skeleton } from '@mui/material'
+import { Container, Grid } from '@mui/material'
 import GenderClients from './GenderClients';
 import ListLastClient from './ListLastClients';
 import InactiveClients from './InactiveClient';
@@ -45,18 +45,7 @@ export const Dashboard = () => {
 	}, [])
 
 	if (data.length === 0) {
-		return "no hay clientes"
-	}
-
-	if (loading) {
-		return (
-			<Container>
-				<Skeleton variant="rectangular" height={118} />
-				<Skeleton height={40} />
-				<Skeleton height={40} />
-				<Skeleton height={40} />
-			</Container>
-		);
+		return "cargando..."
 	}
 
 	return (
