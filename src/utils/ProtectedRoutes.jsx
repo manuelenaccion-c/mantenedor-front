@@ -21,11 +21,10 @@ export const ProtectedRoutes = () => {
             setAuth(response.data);
         } catch (error) {
             if (error.response && error.response.status === 401) {
-                console.warn('Sesión expirada o no autorizada, redirigiendo al login');
-                toast.error('Sesión expirada o no autorizada, redirigiendo al login')
+                toast.error('Sesión expirada o no autorizada, redirigiendo al login');
                 localStorage.clear();
-                navigate('/');
                 setAuth(false);
+                navigate('/');
             }
             setAuth(false);
         } finally {
