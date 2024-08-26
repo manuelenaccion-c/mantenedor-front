@@ -34,7 +34,7 @@ export const ProtectedRoutes = () => {
 
     useEffect(() => {
         validateAuth()
-    }, [navigate])
+    }, [])
 
     if (loading) {
         return <div>Loading...</div>;
@@ -42,6 +42,6 @@ export const ProtectedRoutes = () => {
 
     return (
 
-        auth ? <Outlet /> : navigate('/')
+        auth ? <Outlet /> : <Navigate to='/' />
     )
 }
