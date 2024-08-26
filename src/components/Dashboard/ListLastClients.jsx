@@ -7,14 +7,14 @@ import { useMediaQuery } from '@mui/material';
 import { newDate } from '../../utils/utils';
 
 
-export default function ListLastCLient({ recent_clients }) {
+export default function ListLastClient({ recent_clients }) {
     const matches = useMediaQuery('(min-width:900px)')
 
     return (
         <Card sx={{ maxWidth: matches ? '100%' : 345, }}>
             <CardHeader
-                title="Ultimos Clientes Registrados"
-                subheader="September 14, 2016"
+                title="Ultimos Clientes"
+                // subheader="September 14, 2016"
                 sx={{ borderBottom: "1px solid black" }}
             />
             <CardContent sx={{
@@ -23,11 +23,16 @@ export default function ListLastCLient({ recent_clients }) {
                     paddingBottom: 0,
                 }
             }}>
-                {recent_clients.map((client, id) => (
+                {recent_clients.length > 0 ?
+                    recent_clients.map((client, id) => (
+                        <Typography key={id} sx={{ borderBottom: "1px solid #cacaca", padding: 2, }} variant="body2" color="text.secondary">
+                            {client.name} {client.last_name} {newDate(client.created_at)}
+                        </Typography>
+                    )) :
                     <Typography sx={{ borderBottom: "1px solid #cacaca", padding: 2, }} variant="body2" color="text.secondary">
-                        {client.name} {client.last_name} {newDate(client.created_at)}
+                        No hay nuevos clientes
                     </Typography>
-                ))}
+                }
             </CardContent>
         </Card>
     );

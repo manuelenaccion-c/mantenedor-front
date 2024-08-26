@@ -17,7 +17,7 @@ const ExpandMore = styled((props) => {
     return <IconButton {...other} />;
 })(({ theme, expand }) => ({
     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
+
     transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
     }),
@@ -51,7 +51,7 @@ export default function GenderClients({ gender_distribution }) {
 
             <CardContent>
                 {expanded ? (
-                    <Box sx={{ display: 'flex', gap: 2 }}> {/* gap controla el espacio entre los elementos */}
+                    <Box sx={{ display: 'flex', gap: 1 }}> {/* gap controla el espacio entre los elementos */}
                         {gender_distribution.map(({ gender, count }, index) => (
                             <Typography key={index} variant="body2" color="text.secondary">
                                 {gender}: {count}

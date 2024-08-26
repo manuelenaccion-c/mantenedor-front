@@ -8,14 +8,11 @@ import { useMediaQuery } from '@mui/material';
 export default function InactiveClients({ inactive_clients_data }) {
     const matches = useMediaQuery('(min-width:900px)')
 
-    console.log(inactive_clients_data);
-
-
     return (
         <Card sx={{ maxWidth: matches ? '100%' : 345, }}>
             <CardHeader
-                title="Ultimos Clientes Registrados"
-                subheader="September 14, 2016"
+                title="Clientes inactivos"
+                // subheader={date}
                 sx={{ borderBottom: "1px solid black" }}
             />
             <CardContent sx={{
@@ -23,14 +20,18 @@ export default function InactiveClients({ inactive_clients_data }) {
                     borderBottom: "none",
                     paddingBottom: 0,
                 },
-                maxHeight: 150,
+                maxHeight: matches ? 153 : 205,
                 overflow: 'auto'
             }}>
-                {inactive_clients_data.map((client, id) => (
+                {inactive_clients_data.length > 0 ? (inactive_clients_data.map((client, id) => (
                     <Typography key={id} sx={{ borderBottom: "1px solid #cacaca", padding: 2, }} variant="body2" color="text.secondary">
-                        {client.name} {client.last_name}
+                        {client.name} {client.last_name} {client.email}
                     </Typography>
-                ))}
+                ))) :
+                    <Typography sx={{ borderBottom: "1px solid #cacaca", padding: 2, }} variant="body2" color="text.secondary">
+                        No hay clientes inactivos
+                    </Typography>
+                }
             </CardContent>
         </Card>
     );
