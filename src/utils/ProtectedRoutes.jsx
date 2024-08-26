@@ -13,6 +13,10 @@ export const ProtectedRoutes = () => {
 
     async function validateAuth() {
         const token = localStorage.getItem('authToken');
+        if (!token) {
+            setLoading(false);
+            return;
+        }
         try {
             const response = await axios.get(import.meta.env.VITE_URL_API + '/user/validate-token', {
                 headers: {
@@ -43,11 +47,10 @@ export const ProtectedRoutes = () => {
                 <Skeleton height={40} />
                 <Skeleton height={40} />
                 <Skeleton height={40} />
-            </Container>)
+            </Container>
+        );
     }
 
-    return (
+    return isAuthenticated ? <Outlet /> : <Navigate to="/" />;
+};
 
-        auth && <Outlet />
-    )
-}
