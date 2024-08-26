@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Outlet, useNavigate } from 'react-router'
 import { Navigate } from 'react-router'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 export const ProtectedRoutes = () => {
     const navigate = useNavigate()
@@ -21,8 +22,10 @@ export const ProtectedRoutes = () => {
         } catch (error) {
             if (error.response && error.response.status === 401) {
                 console.warn('Sesión expirada o no autorizada, redirigiendo al login');
-                localStorage.clear();
+                toast.error()
+                localStorage.clear('Sesión expirada o no autorizada, redirigiendo al login');
                 navigate('/');
+                setAuth(false);
             }
             setAuth(false);
         } finally {
