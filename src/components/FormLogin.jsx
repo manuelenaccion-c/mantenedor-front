@@ -106,9 +106,14 @@ const FormLogin = () => {
                     />
                     {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
                 </FormControl>
-                <Button type="submit" variant="contained" color="primary" disableb={!loading}>
-                    {!loading ? <CircularProgress size={24} color="inherit" /> : 'Submit'}
-                </Button>
+                {!loading ?
+                    <Button variant="contained" color="primary" >
+                        <CircularProgress size={24} color="inherit" />
+                    </Button> :
+                    <Button type="submit" variant="contained" color="primary" >
+                        Submit
+                    </Button>
+                }
             </form>
         </Box>
     );
