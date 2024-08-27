@@ -31,18 +31,18 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
         <>
             <TableContainer sx={{ padding: 0, marginBottom: '20px', marginTop: '20px' }} component={Paper} >
                 <Table sx={{}} aria-label="simple table">
-                    <TableHead>
+                    <TableHead sx={{ backgroundColor: '#d7d7d7' }}>
                         <TableRow>
                             <TableCell align="right" style={{ minWidth: 120 }}>
                                 Nombre
                                 <Button onClick={() => { buttonOrderName(); setField("name") }}>
-                                    {field === 'name' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
+                                    {field === 'name' ? (order === 'ASC' ? <ArrowDropUpIcon color="action" /> : <ArrowDropDownIcon color="action" />) : <ArrowDropUpIcon color="action" />}
                                 </Button>
                             </TableCell>
                             <TableCell align="center" style={{ minWidth: 120 }}>
                                 Apellido
                                 <Button onClick={() => { buttonOrderName(); setField("last_name") }}>
-                                    {field === 'last_name' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
+                                    {field === 'last_name' ? (order === 'ASC' ? <ArrowDropUpIcon color="action" /> : <ArrowDropDownIcon color="action" />) : <ArrowDropUpIcon color="action" />}
                                 </Button>
                             </TableCell>
                             <TableCell align="center" style={{ minWidth: 90 }}>RUT</TableCell>
@@ -51,7 +51,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                             <TableCell align="center">Status</TableCell>
                             <TableCell align="center" style={{ minWidth: 120 }}>Creado
                                 <Button onClick={() => { buttonOrderName(); setField("created_at") }}>
-                                    {field === 'created_at' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
+                                    {field === 'created_at' ? (order === 'ASC' ? <ArrowDropUpIcon color="action" /> : <ArrowDropDownIcon color="action" />) : <ArrowDropUpIcon color="action" />}
                                 </Button>
                             </TableCell>
                             <TableCell align="center">Acciones</TableCell>
@@ -77,7 +77,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                                             <EditIcon />
                                         </Button>
                                         <Button>
-                                            <DeleteIcon onClick={() => openModalDelete(client)} sx={{ color: 'red' }} />
+                                            <DeleteIcon onClick={() => openModalDelete(client)} sx={{ color: '#e92727' }} />
                                         </Button>
                                     </TableCell>
                                 </TableRow>
