@@ -1,9 +1,10 @@
-import React from 'react';
-import { Modal, Box, Typography, Button, useMediaQuery, Grid } from '@mui/material';
+import React, { useState } from 'react';
+import { Modal, Box, Typography, Button, useMediaQuery, Grid, CircularProgress } from '@mui/material';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo }) {
+    const [loading, setLoading] = useState(false);
     const match = useMediaQuery('(min-width:600px)')
     const style = {
         position: 'absolute',
@@ -19,9 +20,11 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
     };
 
     const handleDelete = async () => {
+        setLoading(true)
         const token = localStorage.getItem('authToken');
         if (!token) {
             console.error('Token no encontrado en el localStorage');
+            setLoading(false)
             return;
         }
 
@@ -39,6 +42,9 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
         } catch (error) {
             toast.error('Error al eliminar el cliente');
             console.error('Error al eliminar cliente:', error);
+        }
+        finally {
+            setLoading(false)
         }
     };
 
@@ -61,12 +67,12 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
                 <Grid container spacing={2} sx={{ mt: 1 }}>
                     <Grid item xs={6} md={6}>
                         <Button onClick={handleDelete} color="error" variant="contained" fullWidth>
-                            Eliminar
+                            {loading ? <CircularProgress size={24} color="inherit" /> : 'Eliminar'}
                         </Button>
                     </Grid>
                     <Grid item xs={6} md={6}>
                         <Button onClick={closeDeleteModal} variant="contained" fullWidth >
-                            Cancelar
+                            'Cancelar'
                         </Button>
                     </Grid>
                 </Grid>

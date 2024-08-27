@@ -4,10 +4,11 @@ import useCustomerForm from '../../hooks/useCustomerForm';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Button, Container, FormControl, FormControlLabel, Grid, MenuItem, Select, Switch, TextField, useMediaQuery } from '@mui/material';
+import { Button, CircularProgress, Container, FormControl, FormControlLabel, Grid, MenuItem, Select, Switch, TextField, useMediaQuery } from '@mui/material';
 import { toast } from 'react-toastify';
 
 export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) {
+    const [loading, setLoading] = React.useState(false);
     const match = useMediaQuery('(min-width:600px)')
     const style = {
         position: 'absolute',
@@ -45,7 +46,13 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
     }, [customerInfo]);
 
     const onSubmitEditClient = async () => {
+        setLoading(true)
         const token = localStorage.getItem('authToken');
+        if (!token) {
+            console.error('Token no encontrado en el localStorage');
+            setLoading(false)
+            return;
+        }
 
         const hasChanges = () => {
             return (
@@ -76,6 +83,8 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
                 toast.error('Error al actualiar')
                 console.error('Error al actualizar cliente:', error);
 
+            } finally {
+                setLoading(false)
             }
         }
     };
@@ -180,7 +189,9 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
                             />
                         </Grid>
                         <Grid item xs={6} md={6}>
-                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>Actualizar</Button>
+                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>
+                                {loading ? <CircularProgress size={24} color="inherit" /> : 'Actualizar'}
+                            </Button>
                         </Grid>
                         <Grid item xs={6} md={6}>
                             <Button variant="contained" color="error" onClick={closeEditoModal} fullWidth>Cerrar</Button>

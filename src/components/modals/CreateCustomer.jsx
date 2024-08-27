@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import useCustomerForm from '../../hooks/useCustomerForm';
-import { Modal, Box, Typography, Button, Container, FormControl, Grid, TextField, Select, MenuItem, useMediaQuery } from '@mui/material';
+import { Modal, Box, Typography, Button, Container, FormControl, Grid, TextField, Select, MenuItem, useMediaQuery, CircularProgress } from '@mui/material';
 import { toast } from 'react-toastify';
 
 export function CreateCustomer({ openModalCreate, closeCreateModal }) {
+    const [loading, setLoading] = useState(false);
     const match = useMediaQuery('(min-width:600px)')
     const style = {
         position: 'absolute',
@@ -35,6 +36,7 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
 
 
     const onSubmitEditClient = async () => {
+        setLoading(true)
         const token = localStorage.getItem('authToken');
         if (validateForm()) {
             try {
@@ -51,7 +53,11 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                 console.error('Error al actualizar cliente:', error);
 
             }
+            finally {
+                setLoading(false)
+            }
         }
+
     };
 
     return (
@@ -98,7 +104,7 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                                 required
                                 id="rut"
                                 name="rut"
-                                label="RUT"
+                                label="RUT 12345678-0"
                                 value={formData.rut}
                                 onChange={handleChange}
                                 error={!!errors.rut}
@@ -138,7 +144,9 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                             {errors.gender && <Typography color="error">{errors.gender}</Typography>}
                         </Grid>
                         <Grid item xs={6} md={6}>
-                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>Crear</Button>
+                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>
+                                {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
+                            </Button>
                         </Grid>
                         <Grid item xs={6} md={6}>
                             <Button variant="contained" color="error" onClick={() => { closeCreateModal(), clearFormData() }} fullWidth>Cerrar</Button>
