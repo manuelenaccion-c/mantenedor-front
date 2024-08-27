@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
-import { TextField, Button, FormControl, FormHelperText, Box, Typography, CircularProgress } from '@mui/material';
+import { TextField, Button, FormControl, FormHelperText, Box, Typography, CircularProgress, InputAdornment, IconButton } from '@mui/material';
 import { toast } from 'react-toastify';
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 const FormLogin = () => {
     const { login } = useAuth();
@@ -13,6 +14,9 @@ const FormLogin = () => {
     const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
+    const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -98,11 +102,24 @@ const FormLogin = () => {
                     <TextField
                         label="Password"
                         name="password"
-                        type="password"
+                        type={showPassword ? "text" : "password"}
                         value={formData.password}
                         onChange={handleChange}
                         variant="outlined"
                         required
+                        InputProps={{ // <-- This is where the toggle button is added.
+                            endAdornment: (
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label="toggle password visibility"
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                    >
+                                        {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                                    </IconButton>
+                                </InputAdornment>
+                            )
+                        }}
                     />
                     {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
                 </FormControl>
