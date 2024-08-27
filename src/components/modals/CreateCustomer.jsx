@@ -110,11 +110,11 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                                 required
                                 id="rut"
                                 name="rut"
-                                label="RUT 12345678-0"
+                                label="RUT"
                                 value={formData.rut}
                                 onChange={handleChange}
                                 error={!!errors.rut}
-                                helperText={errors.rut}
+                                helperText={errors.rut || 'Formato 12345678-9'}
                                 fullWidth
                             />
                         </Grid>

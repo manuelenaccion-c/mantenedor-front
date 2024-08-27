@@ -45,7 +45,7 @@ const useCustomerForm = (initialData = {}) => {
 
         const rutPattern = /^[0-9]{7,8}-[0-9Kk]$/;
         if (!rutPattern.test(formData.rut)) {
-            newErrors.rut = 'Rut inválido. Debe tener el formato 12345678-9';
+            newErrors.rut = 'Rut inválido  y/o dv erróneo. Debe tener el formato 12345678-9';
             valid = false;
         } else if (!validateRut(formData.rut)) {
             newErrors.rut = 'Rut inválido y/o dv erróneo';

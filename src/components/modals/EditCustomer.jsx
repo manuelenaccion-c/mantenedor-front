@@ -142,7 +142,7 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
                                 value={formData.rut}
                                 onChange={handleChange}
                                 error={!!errors.rut}
-                                helperText={errors.rut}
+                                helperText={errors.rut || 'Formato 12345678-9'}
                                 fullWidth
                             />
                         </Grid>
