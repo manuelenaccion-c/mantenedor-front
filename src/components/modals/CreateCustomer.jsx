@@ -150,9 +150,13 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                             {errors.gender && <Typography color="error">{errors.gender}</Typography>}
                         </Grid>
                         <Grid item xs={6} md={6}>
-                            <Button variant="contained" color="primary" disableb={loading} onClick={onSubmitEditClient} fullWidth>
-                                {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
-                            </Button>
+                            {loading ?
+                                <Button variant="contained" color="primary" fullWidth>
+                                    <CircularProgress size={24} color="inherit" />
+                                </Button> :
+                                <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>
+                                    Crear
+                                </Button>}
                         </Grid>
                         <Grid item xs={6} md={6}>
                             <Button variant="contained" color="error" onClick={() => { closeCreateModal(), clearFormData() }} fullWidth>Cerrar</Button>
