@@ -45,7 +45,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                                     {field === 'last_name' ? (order === 'ASC' ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />) : <ArrowDropUpIcon />}
                                 </Button>
                             </TableCell>
-                            <TableCell align="center">RUT</TableCell>
+                            <TableCell align="center" style={{ minWidth: 90 }}>RUT</TableCell>
                             <TableCell align="center">Correo</TableCell>
                             <TableCell align="center">Sexo</TableCell>
                             <TableCell align="center">Status</TableCell>
@@ -65,7 +65,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                                         {client.name}
                                     </TableCell>
                                     <TableCell align="left">{client.last_name}</TableCell>
-                                    <TableCell align="left" sx={{ padding: 0, fontSize: '10px' }}>{client.rut}</TableCell>
+                                    <TableCell align="left">{client.rut}</TableCell>
                                     <TableCell align="left">{client.email}</TableCell>
                                     <TableCell align="left">{client.gender}</TableCell>
                                     <TableCell align="right">
