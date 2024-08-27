@@ -66,10 +66,10 @@ export const Dashboard = () => {
 				</Grid>
 				<Grid item md={6} xs={12}>
 					<Grid container spacing={2}>
-						<Grid item md={6} xs={6}>
+						<Grid item md={6} xs={12}>
 							<ListLastClient recent_clients={data.recent_clients} />
 						</Grid>
-						<Grid item md={6} xs={6}>
+						<Grid item md={6} xs={12}>
 							<InactiveClients inactive_clients_data={data.inactive_clients_data} />
 						</Grid>
 					</Grid>
