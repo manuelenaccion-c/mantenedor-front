@@ -47,6 +47,7 @@ export default function GenderClients({ gender_distribution }) {
                     </ExpandMore>
                 }
                 title="Genero"
+                titleTypographyProps={{ fontWeight: '600' }}
             />
 
             <CardContent>

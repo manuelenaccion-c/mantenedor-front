@@ -47,6 +47,7 @@ export default function CountClients({ title, countClients }) {
                     </ExpandMore>
                 }
                 title={title}
+                titleTypographyProps={{ fontWeight: '600' }}
             />
 
             <CardContent>
