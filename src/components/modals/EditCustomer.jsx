@@ -67,6 +67,7 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
 
         if (!hasChanges()) {
             toast.info('No se han realizado cambios.');
+            setLoading(false)
             return;
         }
 
@@ -87,6 +88,7 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
                 setLoading(false)
             }
         }
+        setLoading(false)
     };
 
     if (!customerInfo) return null;

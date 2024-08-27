@@ -38,6 +38,11 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
     const onSubmitEditClient = async () => {
         setLoading(true)
         const token = localStorage.getItem('authToken');
+        if (!token) {
+            console.error('Token no encontrado en el localStorage');
+            setLoading(false)
+            return;
+        }
         if (validateForm()) {
             try {
                 const response = await axios.post(import.meta.env.VITE_URL_API + '/client', formData, {
@@ -57,6 +62,7 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                 setLoading(false)
             }
         }
+        setLoading(false)
 
     };
 

@@ -46,6 +46,7 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
         finally {
             setLoading(false)
         }
+        setLoading(false)
     };
 
     if (!customerInfo) return null;
@@ -72,7 +73,7 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
                     </Grid>
                     <Grid item xs={6} md={6}>
                         <Button onClick={closeDeleteModal} variant="contained" fullWidth >
-                            'Cancelar'
+                            Cancelar
                         </Button>
                     </Grid>
                 </Grid>
