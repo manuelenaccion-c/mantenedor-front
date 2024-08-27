@@ -11,7 +11,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const FormLogin = () => {
     const { login } = useAuth();
     const navigate = useNavigate()
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
     const [showPassword, setShowPassword] = useState(false);
@@ -50,7 +50,7 @@ const FormLogin = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(false)
+        setLoading(true)
         if (validateForm()) {
             try {
                 const response = await axios.post(import.meta.env.VITE_URL_API + '/user/login', formData);
@@ -78,8 +78,11 @@ const FormLogin = () => {
                 }
                 console.error('Error durante el login:', error);
             }
+            finally {
+                setLoading(false)
+            }
         }
-        setLoading(true)
+        setLoading(false)
     };
 
     return (
@@ -123,14 +126,9 @@ const FormLogin = () => {
                     />
                     {errors.password && <FormHelperText>{errors.password}</FormHelperText>}
                 </FormControl>
-                {!loading ?
-                    <Button variant="contained" color="primary" >
-                        <CircularProgress size={24} color="inherit" />
-                    </Button> :
-                    <Button type="submit" variant="contained" color="primary" >
-                        Submit
-                    </Button>
-                }
+                <Button type='submit' variant="contained" color="primary" disableb={loading}>
+                    {loading ? <CircularProgress size={24} color="inherit" /> : 'Submit'}
+                </Button>
             </form>
         </Box>
     );
