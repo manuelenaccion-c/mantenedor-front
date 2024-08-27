@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import BusinessIcon from '@mui/icons-material/Business';
 import { Menu, MenuItem, Tooltip } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 
 export default function ButtonAppBar() {
+    const location = useLocation();
 
     const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -35,7 +35,7 @@ export default function ButtonAppBar() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-    const settings = ['Clientes', 'Logout'];
+    const settings = ['Dashboard', 'Clientes', 'Logout'];
 
     const handleLogout = () => {
         logout();
@@ -75,14 +75,29 @@ export default function ButtonAppBar() {
                             open={Boolean(anchorElUser)}
                             onClose={handleCloseUserMenu}
                         >
-                            {settings.map((setting) => (
+                            {/* {settings.map((setting) => (
                                 <MenuItem
                                     key={setting}
                                     onClick={setting === 'Logout' ? handleLogout : setting === 'Clientes' ? handleClients : handleCloseUserMenu}
                                 >
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
-                            ))}
+                            ))} */}
+                            {location.pathname !== '/dashboard' &&
+                                <MenuItem>
+                                    <Link to={'/dashboard'} onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
+                                        <Typography textAlign="center">Dashboard</Typography>
+                                    </Link>
+                                </MenuItem>}
+                            <MenuItem>
+                                <Link to={'/dashboard/clients'} onClick={handleCloseUserMenu} style={{ textDecoration: 'none' }}>
+                                    <Typography textAlign="center">Clientes</Typography>
+                                </Link>
+                            </MenuItem>
+                            <MenuItem onClick={handleLogout}>
+                                <Typography textAlign="center">Logout</Typography>
+                            </MenuItem>
+
                         </Menu>
                     </Box>
                     <Link to={'/dashboard'}>
