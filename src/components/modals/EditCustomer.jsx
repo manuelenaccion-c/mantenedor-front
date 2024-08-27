@@ -189,7 +189,7 @@ export function EditCustomer({ openEditoModal, closeEditoModal, customerInfo }) 
                             />
                         </Grid>
                         <Grid item xs={6} md={6}>
-                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>
+                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth disableb={loading}>
                                 {loading ? <CircularProgress size={24} color="inherit" /> : 'Actualizar'}
                             </Button>
                         </Grid>

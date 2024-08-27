@@ -144,7 +144,7 @@ export function CreateCustomer({ openModalCreate, closeCreateModal }) {
                             {errors.gender && <Typography color="error">{errors.gender}</Typography>}
                         </Grid>
                         <Grid item xs={6} md={6}>
-                            <Button variant="contained" color="primary" onClick={onSubmitEditClient} fullWidth>
+                            <Button variant="contained" color="primary" disableb={loading} onClick={onSubmitEditClient} fullWidth>
                                 {loading ? <CircularProgress size={24} color="inherit" /> : 'Crear'}
                             </Button>
                         </Grid>

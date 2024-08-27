@@ -66,7 +66,7 @@ export function DeleteCustomer({ openModalDelete, closeDeleteModal, customerInfo
                 </Typography>
                 <Grid container spacing={2} sx={{ mt: 1 }}>
                     <Grid item xs={6} md={6}>
-                        <Button onClick={handleDelete} color="error" variant="contained" fullWidth>
+                        <Button onClick={handleDelete} color="error" variant="contained" fullWidth disableb={loading}>
                             {loading ? <CircularProgress size={24} color="inherit" /> : 'Eliminar'}
                         </Button>
                     </Grid>
