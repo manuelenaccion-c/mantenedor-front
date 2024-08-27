@@ -11,7 +11,7 @@ export default function ClientsChart({ client_month }) {
             xAxis={[{ scaleType: 'band', data: months }]}
             series={[{ data: counts }]}
             width={300}
-            height={300}
+            height={250}
         />
     );
 }
