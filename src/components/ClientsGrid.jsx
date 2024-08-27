@@ -15,7 +15,7 @@ import { newDate } from '../utils/utils';
 export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, openEditoModal, openModalDelete }) => {
 
     const [page, setPage] = useState(1);
-    const itemsPerPage = 10;
+    const itemsPerPage = 4;
 
     // total pages
     const totalPages = Math.ceil(clients.length / itemsPerPage);

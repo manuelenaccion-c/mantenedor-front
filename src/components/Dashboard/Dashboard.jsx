@@ -52,11 +52,11 @@ export const Dashboard = () => {
 		<Container>
 			<Grid container spacing={2}>
 				{data.statistics_clients.map((count, index) => (
-					<Grid item md={3} xs={12} key={index}>
+					<Grid item md={3} sm={6} xs={12} key={index}>
 						<CountClients title={count.title} countClients={count.total} />
 					</Grid>
 				))}
-				<Grid item md={3} xs={12}>
+				<Grid item md={3} sm={6} xs={12}>
 					<GenderClients gender_distribution={data.gender_distribution} />
 				</Grid>
 			</Grid>

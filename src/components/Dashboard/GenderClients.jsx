@@ -51,7 +51,7 @@ export default function GenderClients({ gender_distribution }) {
 
             <CardContent>
                 {expanded ? (
-                    <Box sx={{ display: 'flex', gap: 1 }}> {/* gap controla el espacio entre los elementos */}
+                    <Box sx={{ display: 'flex', gap: 1 }}>
                         {gender_distribution.map(({ gender, count }, index) => (
                             <Typography key={index} variant="body2" color="text.secondary">
                                 {gender}: {count}
