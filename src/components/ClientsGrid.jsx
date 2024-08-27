@@ -65,7 +65,7 @@ export const ClientsGrid = ({ buttonOrderName, field, setField, order, clients, 
                                         {client.name}
                                     </TableCell>
                                     <TableCell align="left">{client.last_name}</TableCell>
-                                    <TableCell align="left">{client.rut}</TableCell>
+                                    <TableCell align="left" sx={{ padding: 0, fontSize: '10px' }}>{client.rut}</TableCell>
                                     <TableCell align="left">{client.email}</TableCell>
                                     <TableCell align="left">{client.gender}</TableCell>
                                     <TableCell align="right">
