@@ -100,7 +100,7 @@ export default function ButtonAppBar() {
 
                         </Menu>
                     </Box>
-                    <Link to={'/dashboard'}>
+                    <Link to={user && '/dashboard'}>
                         <BusinessIcon sx={{ color: 'white' }} />
                     </Link>
                 </Toolbar>
