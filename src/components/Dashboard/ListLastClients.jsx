@@ -27,7 +27,7 @@ export default function ListLastClient({ recent_clients }) {
                 {recent_clients.length > 0 ?
                     recent_clients.map((client, id) => (
                         <Typography key={id} sx={{ borderBottom: "1px solid #cacaca", padding: 2, display: 'flex', justifyContent: 'space-between' }} variant="body2" color="text.secondary">
-                            {client.name} {client.last_name}  <span>{newDate(client.created_at)}</span>
+                            {client.name} {client.last_name}  <span>{client.created_at}</span>
                         </Typography>
                     )) :
                     <Typography sx={{ borderBottom: "1px solid #cacaca", padding: 2, }} variant="body2" color="text.secondary">
